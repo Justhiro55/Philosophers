@@ -6,7 +6,7 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:36:39 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/15 20:40:30 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:53:14 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ void	case_one_philo(t_info *info)
 int	main(int argc, char **argv)
 {
 	if (argc != 5 && argc != 6)
+	{
+		printf(ERROR_MSG);
+		return (1);
+	}
+	if (error_check(argc, argv) == ERROR)
 	{
 		printf(ERROR_MSG);
 		return (1);
@@ -48,8 +53,6 @@ void	philo(int argc, char **argv)
 	int		i;
 
 	i = 0;
-	if (error_check(argc, argv) == ERROR)
-		return ;
 	if (set_param(&info, argc, argv) == ERROR)
 		return ;
 	info.philos = set_philosopher(info.philo_num, info);

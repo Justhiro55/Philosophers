@@ -6,7 +6,7 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:53:20 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/14 18:11:38 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:57:27 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ int	num_check(char *str)
 	i = 0;
 	if (str[i] == '-')
 	{
-		printf(ERROR_MSG);
 		return (ERROR);
 	}
 	if (str[i] == '+')
 		i++;
+	if (str[i] == '0')
+		return (ERROR);
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
 		{
-			printf(ERROR_MSG);
 			return (ERROR);
 		}
 		i++;
@@ -44,6 +44,8 @@ int	error_check(int argc, char **argv)
 	while (++i < argc)
 	{
 		if (num_check(argv[i]) == ERROR)
+			return (ERROR);
+		if (ft_atoi(argv[i]) == 0)
 			return (ERROR);
 	}
 	return (SUCCESS);
