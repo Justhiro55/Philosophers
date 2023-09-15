@@ -6,7 +6,7 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:36:54 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/15 19:31:07 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/15 21:19:33 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ typedef struct s_info
 }					t_info;
 
 // action
-void				take_fork_left(t_philo *philo);
-void				take_fork_right(t_philo *philo);
 void				eat(t_philo *philo);
 void				think(t_philo *philo);
 void				*monitor(void *info_ptr);

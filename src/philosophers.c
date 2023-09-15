@@ -6,7 +6,7 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:34:16 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/15 20:38:41 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/15 21:23:33 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,6 @@ void	*monitor(void *info_ptr)
 			return (0);
 		}
 		pthread_mutex_unlock(&info->dead_mutex);
-		if (info->philos[i].eat_count == info->must_eat
-			&& info->philos[i].finish_flag == 0)
-		{
-			info->philos[i].finish_flag++;
-			info->finish_count++;
-		}
 		if (info->finish_count == info->philo_num || info->dead == 1)
 			break ;
 		i++;

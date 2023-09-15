@@ -6,16 +6,11 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 20:07:21 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/15 20:34:55 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/15 21:20:09 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-void	test_print(int i)
-{
-	printf("😄%d\n", i);
-}
 
 void	think(t_philo *philo)
 {
