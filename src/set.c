@@ -6,17 +6,21 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:39:36 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/15 20:50:29 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/22 20:07:15 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	set_time(t_info *info, char **argv)
+void	set_basic(t_info *info, char **argv)
 {
+	info->dead = 0;
+	info->philo_num = ft_atoi(argv[1]);
 	info->time_to_die = ft_atoi(argv[2]);
 	info->time_to_eat = ft_atoi(argv[3]);
 	info->time_to_sleep = ft_atoi(argv[4]);
+	info->must_eat = -1;
+	info->finish_count = 0;
 }
 
 int	set_param(t_info *info, int argc, char **argv)
@@ -24,13 +28,10 @@ int	set_param(t_info *info, int argc, char **argv)
 	pthread_mutex_t	write;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	dead;
+	pthread_mutex_t	finish;
 	int				i;
 
-	info->dead = 0;
-	info->philo_num = ft_atoi(argv[1]);
-	set_time(info, argv);
-	info->must_eat = -1;
-	info->finish_count = 0;
+	set_basic(info, argv);
 	if (argc == 6)
 		info->must_eat = ft_atoi(argv[5]);
 	fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * info->philo_num);
@@ -40,10 +41,12 @@ int	set_param(t_info *info, int argc, char **argv)
 	while (++i < info->philo_num)
 		pthread_mutex_init(&fork[i], 0);
 	pthread_mutex_init(&write, 0);
+	pthread_mutex_init(&finish, 0);
 	pthread_mutex_init(&dead, 0);
 	info->forks = fork;
 	info->dead_mutex = dead;
 	info->write = write;
+	info->finish_mutex = finish;
 	return (SUCCESS);
 }
 

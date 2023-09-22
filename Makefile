@@ -6,7 +6,7 @@
 #    By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/26 16:37:51 by hhagiwar          #+#    #+#              #
-#    Updated: 2023/09/15 20:41:05 by hhagiwar         ###   ########.fr        #
+#    Updated: 2023/09/22 22:49:58 by hhagiwar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ clean:
 	$(RM) $(RMFLAGS) $(OBJ_DIR)/*.o
     
 fclean: clean 
-	$(RM) $(NAME)
+	$(RM) $(RMFLAGS) $(NAME)
 	@printf "\e[38;5;208msuccessfully deleted🗑\e[0m\n"
 
 push: 

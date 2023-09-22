@@ -6,7 +6,7 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:36:54 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/15 21:19:33 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:38:43 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_info
 	u_int64_t		time_to_sleep;
 	u_int64_t		start_time;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	finish_mutex;
 	pthread_mutex_t	dead_mutex;
 	pthread_mutex_t	write;
 }					t_info;
@@ -81,6 +82,8 @@ void				error_output(void);
 unsigned long		get_time(void);
 void				clear_data(t_info *info);
 int					check_finish(t_philo philo);
+void				pick_up_forks(t_philo *philo);
+void				put_down_forks(t_philo *philo);
 
 // othres
 int					error_check(int argc, char **argv);

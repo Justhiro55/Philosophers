@@ -6,17 +6,36 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 20:58:50 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/15 20:20:06 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:38:33 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+void	pick_up_forks(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->info->forks[philo->id - 1]);
+	pthread_mutex_lock(&philo->info->forks[(philo->id)
+		%philo->info->philo_num]);
+}
+
+void	put_down_forks(t_philo *philo)
+{
+	pthread_mutex_unlock(&philo->info->forks[(philo->id)
+		%philo->info->philo_num]);
+	pthread_mutex_unlock(&philo->info->forks[philo->id - 1]);
+}
+
 int	check_finish(t_philo philo)
 {
+	pthread_mutex_lock(&philo.info->dead_mutex);
 	if (philo.info->finish_count == philo.info->philo_num
 		|| philo.info->dead == 1)
+	{
+		pthread_mutex_unlock(&philo.info->dead_mutex);
 		return (ERROR);
+	}
+	pthread_mutex_unlock(&philo.info->dead_mutex);
 	return (SUCCESS);
 }
 
