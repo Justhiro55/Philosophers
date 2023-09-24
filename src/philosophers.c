@@ -6,7 +6,7 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:34:16 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/22 22:48:32 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:40:20 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,16 @@ void	*work(void *philo_ptr)
 	pthread_create(&monitor_thread, NULL, &monitor, philo);
 	while (1)
 	{
+		monitor_count(philo);
 		if (check_finish(*philo) == ERROR)
 			break ;
 		eat(philo);
+		monitor_count(philo);
 		if (check_finish(*philo) == ERROR)
 			break ;
 		sleep_philo(philo);
 		think(philo);
+		monitor_count(philo);
 		if (check_finish(*philo) == ERROR)
 			break ;
 	}
@@ -55,14 +58,14 @@ void	*monitor(void *philo_ptr)
 			return (0);
 		}
 		pthread_mutex_unlock(&philo->info->dead_mutex);
-		pthread_mutex_lock(&philo->info->dead_mutex);
+		pthread_mutex_lock(&philo->info->write);
 		if (philo->info->finish_count == philo->info->philo_num
 			|| philo->info->dead == 1)
 		{
-			pthread_mutex_unlock(&philo->info->dead_mutex);
+			pthread_mutex_unlock(&philo->info->write);
 			break ;
 		}
-		pthread_mutex_unlock(&philo->info->dead_mutex);
+		pthread_mutex_unlock(&philo->info->write);
 	}
 	return (0);
 }

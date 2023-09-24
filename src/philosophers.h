@@ -6,7 +6,7 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:36:54 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/22 22:38:43 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:37:07 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 # define ERROR_MSG "Error\n"
 
-struct	s_info;
+struct s_info;
 
 typedef struct s_philo
 {
@@ -84,6 +84,7 @@ void				clear_data(t_info *info);
 int					check_finish(t_philo philo);
 void				pick_up_forks(t_philo *philo);
 void				put_down_forks(t_philo *philo);
+int					monitor_count(t_philo *philo);
 
 // othres
 int					error_check(int argc, char **argv);
