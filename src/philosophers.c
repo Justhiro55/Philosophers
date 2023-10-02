@@ -6,7 +6,7 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:34:16 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/24 18:40:20 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/25 22:13:26 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ void	*monitor(void *philo_ptr)
 			print(philo, "died");
 			return (0);
 		}
-		pthread_mutex_unlock(&philo->info->dead_mutex);
-		pthread_mutex_lock(&philo->info->write);
-		if (philo->info->finish_count == philo->info->philo_num
-			|| philo->info->dead == 1)
+		pthread_mutex_lock(&philo->info->finish_mutex);
+		if (monitor_finish(*philo))
 		{
-			pthread_mutex_unlock(&philo->info->write);
+			pthread_mutex_unlock(&philo->info->dead_mutex);
+			pthread_mutex_unlock(&philo->info->finish_mutex);
 			break ;
 		}
-		pthread_mutex_unlock(&philo->info->write);
+		pthread_mutex_unlock(&philo->info->finish_mutex);
+		pthread_mutex_unlock(&philo->info->dead_mutex);
 	}
 	return (0);
 }
@@ -90,11 +90,14 @@ void	wait_for_threads(t_info *info, pthread_t *th)
 	while (1)
 	{
 		pthread_mutex_lock(&info->dead_mutex);
+		pthread_mutex_lock(&info->finish_mutex);
 		if (info->finish_count == info->philo_num || info->dead == 1)
 		{
 			pthread_mutex_unlock(&info->dead_mutex);
+			pthread_mutex_unlock(&info->finish_mutex);
 			break ;
 		}
+		pthread_mutex_unlock(&info->finish_mutex);
 		pthread_mutex_unlock(&info->dead_mutex);
 	}
 	i = -1;

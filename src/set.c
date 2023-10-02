@@ -6,7 +6,7 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:39:36 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/22 20:07:15 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/25 21:49:05 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,20 @@ void	set_philosopher_param(t_philo *philo, t_info *info, int i)
 
 t_philo	*set_philosopher(int num, t_info info)
 {
-	t_philo	*philo;
-	int		i;
+	t_philo			*philo;
+	pthread_mutex_t	dead;
+	int				i;
 
 	i = 0;
 	philo = (t_philo *)malloc(sizeof(t_philo) * num);
 	if (philo == NULL)
 		return (NULL);
+	pthread_mutex_init(&dead, 0);
 	while (i < num)
 	{
 		set_philosopher_param(&philo[i], &info, i);
 		i++;
 	}
+	philo->dead_mutex = dead;
 	return (philo);
 }

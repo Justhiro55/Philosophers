@@ -6,7 +6,7 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:53:20 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/09/15 21:20:53 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/09/25 22:12:52 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,12 @@ int	error_check(int argc, char **argv)
 			return (ERROR);
 	}
 	return (SUCCESS);
+}
+
+int	monitor_finish(t_philo philo)
+{
+	if (philo.info->finish_count == philo.info->philo_num
+		|| philo.info->dead == 1)
+		return (1);
+	return (0);
 }
