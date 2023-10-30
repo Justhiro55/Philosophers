@@ -15,6 +15,11 @@ To prevent deadlock, the idea used is that each philosopher must always get from
 ./philo [number_of_philosophers] [time_to_die] [time_to_eat] [time_to_sleep] [number_of_time_each_philosophers_must_eat(option)]
 ```
 
+
+Click here to see the visualizer used to check the execution results.
+- [Philosophers visualizer](https://nafuka11.github.io/philosophers-visualizer/)
+  
+
 ## Testing
 ### Third-party tester
 I tested the library with this third-party tester:
