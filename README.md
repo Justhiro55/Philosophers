@@ -25,3 +25,7 @@ Click here to see the visualizer used to check the execution results.
 I tested the library with this third-party tester:
 
 - [MichelleJiam/LazyPhilosophersTester](https://github.com/MichelleJiam/LazyPhilosophersTester)
+
+### Visualizer
+
+- [nafuka11/Philosophers visualizer](https://nafuka11.github.io/philosophers-visualizer/)
